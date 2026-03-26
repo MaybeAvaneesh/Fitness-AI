@@ -1,0 +1,113 @@
+/* ── Header ── */
+.ah__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ah__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.ah__count {
+  font-size: 0.8rem;
+  color: var(--text-sec);
+}
+
+/* ── Scroll wrapper ── */
+.ah__wrap {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+/* ── Month labels ── */
+.ah__month-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  min-width: max-content;
+}
+
+.ah__spacer {
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.ah__months {
+  display: flex;
+  gap: 3px;
+  flex: 1;
+}
+
+.ah__month {
+  font-size: 0.65rem;
+  color: var(--text-sec);
+  width: 28px;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+/* ── Grid ── */
+.ah__grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: max-content;
+}
+
+.ah__days {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 2px;
+}
+
+.ah__day {
+  font-size: 0.6rem;
+  color: var(--text-sec);
+  height: 11px;
+  display: flex;
+  align-items: center;
+  width: 24px;
+  justify-content: flex-end;
+  padding-right: 4px;
+}
+
+.ah__weeks {
+  display: flex;
+  gap: 3px;
+}
+
+.ah__week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ah__cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ── Legend ── */
+.ah__legend {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.ah__legend-text {
+  font-size: 0.65rem;
+  color: var(--text-sec);
+  margin: 0 4px;
+}

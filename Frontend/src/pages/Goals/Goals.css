@@ -1,0 +1,232 @@
+.goals-page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.goals-content {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ── Header ── */
+.goals-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.goals-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.goals-sub {
+  color: var(--text-sec);
+  font-size: 0.9rem;
+}
+
+/* ── Unit Toggle ── */
+.unit-toggle {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.unit-btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-sec);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.unit-btn--active {
+  background: var(--orange);
+  color: #fff;
+}
+
+/* ── Lift Cards ── */
+.lift-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lift-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.lift-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.lift-card__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lift-card__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--orange-dim);
+  border: 1px solid var(--orange-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+
+.lift-card__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.pct-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--orange);
+  background: var(--orange-dim);
+  border: 1px solid var(--orange-border);
+  border-radius: 100px;
+  padding: 2px 10px;
+}
+
+/* ── Progress Bar ── */
+.bar-track {
+  height: 4px;
+  background: var(--border-2);
+  border-radius: 99px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--orange-dark), var(--orange-light));
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+/* ── Inputs ── */
+.lift-input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.lift-arrow {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.input-group {
+  flex: 1;
+}
+
+.input-group__label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-sec);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.input-group__wrap {
+  position: relative;
+}
+
+.num-input {
+  width: 100%;
+  padding: 10px 44px 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.num-input:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px var(--orange-dim);
+}
+
+.num-input--target {
+  border-color: var(--orange-border);
+  background: var(--orange-subtle);
+}
+
+.num-input--target:focus {
+  border-color: var(--orange);
+}
+
+.input-unit-tag {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  color: var(--text-sec);
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* ── Save Row ── */
+.goals-save-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.saved-badge {
+  font-size: 0.85rem;
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.save-btn {
+  padding: 12px 28px;
+  background: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 0 24px var(--orange-glow);
+}
+
+.save-btn:hover { background: var(--orange-light); }

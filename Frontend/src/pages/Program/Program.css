@@ -1,0 +1,150 @@
+.program-page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.program-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ── Header ── */
+.program-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.program-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.program-sub {
+  color: var(--text-sec);
+  font-size: 0.9rem;
+}
+
+.program-goals-btn {
+  padding: 9px 20px;
+  background: transparent;
+  border: 1px solid var(--border-2);
+  border-radius: 8px;
+  color: var(--text-sec);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.program-goals-btn:hover {
+  background: var(--orange-dim);
+  border-color: var(--orange);
+  color: var(--text);
+}
+
+/* ── Chart Grid ── */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 18px;
+}
+
+.chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.chart-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.chart-card__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.chart-card__icon {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.chart-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-sec);
+}
+
+.chart-card__stats {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.chart-card__current {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.9rem;
+  color: var(--text);
+  line-height: 1;
+}
+
+.chart-card__current-unit {
+  font-size: 0.8rem;
+  color: var(--text-sec);
+  font-weight: 500;
+}
+
+.chart-card__delta {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4caf50;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* ── Tooltip ── */
+.chart-tooltip {
+  background: #1a1a1a;
+  border: 1px solid var(--border-2);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.chart-tooltip__label {
+  font-size: 0.7rem;
+  color: var(--text-sec);
+  margin-bottom: 2px;
+}
+
+.chart-tooltip__value {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.chart-tooltip__unit {
+  font-size: 0.75rem;
+  color: var(--text-sec);
+  font-weight: 400;
+}

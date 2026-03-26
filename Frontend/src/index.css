@@ -1,0 +1,68 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Orange Theme (default) ── */
+:root {
+  --bg: #0A0A0A;
+  --bg-card: #111111;
+  --bg-card-2: #181818;
+  --bg-header: rgba(10, 10, 10, 0.85);
+  --orange: #FF5722;
+  --orange-light: #FF7043;
+  --orange-dark: #E64A19;
+  --orange-dim:    rgba(255, 87, 34, 0.12);
+  --orange-glow:   rgba(255, 87, 34, 0.25);
+  --orange-border: rgba(255, 87, 34, 0.30);
+  --orange-subtle: rgba(255, 87, 34, 0.06);
+  --text: #FFFFFF;
+  --text-sec: #9A9A9A;
+  --text-muted: #555;
+  --border: #1E1E1E;
+  --border-2: #2A2A2A;
+  --font: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+/* ── Yellow / White Theme ── */
+:root[data-theme="yellow"] {
+  --bg:           #FAFAFA;
+  --bg-header:    rgba(255, 255, 255, 0.90);
+  --bg-card:      #F0F0F0;
+  --bg-card-2:    #E5E5E5;
+  --orange:       #F59E0B;
+  --orange-light: #FCD34D;
+  --orange-dark:  #D97706;
+  --orange-dim:    rgba(245, 158, 11, 0.15);
+  --orange-glow:   rgba(245, 158, 11, 0.30);
+  --orange-border: rgba(245, 158, 11, 0.35);
+  --orange-subtle: rgba(245, 158, 11, 0.08);
+  --text:         #111111;
+  --text-sec:     #555555;
+  --text-muted:   #999999;
+  --border:       #E0E0E0;
+  --border-2:     #CCCCCC;
+}
+
+html { font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--orange-dark); }
+
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, select, textarea { font-family: inherit; outline: none; }
+a { text-decoration: none; color: inherit; }
