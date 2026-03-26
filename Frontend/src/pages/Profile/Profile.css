@@ -66,107 +66,13 @@
   margin-bottom: 20px;
 }
 
-/* ── Unit Toggle ── */
-.unit-toggle {
-  display: flex;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 3px;
-  gap: 2px;
-}
-
-.unit-btn {
-  padding: 5px 14px;
-  border-radius: 6px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--text-sec);
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.unit-btn--active {
-  background: var(--orange);
-  color: #fff;
-}
-
-/* ── Weight ── */
-.weight-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  padding: 20px 0;
-}
-
-.weight-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--bg-card-2);
-  border: 1px solid var(--border-2);
-  color: var(--text);
-  font-size: 1.5rem;
-  font-weight: 300;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.weight-btn:hover {
-  background: var(--bg-card-2);
-  border-color: var(--orange);
-}
-
-.weight-display {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.weight-num {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 3.5rem;
-  color: var(--orange);
-  line-height: 1;
-}
-
-.weight-unit {
-  font-size: 1rem;
-  color: var(--text-sec);
-  font-weight: 600;
-}
-
-.weight-update-btn {
-  display: block;
-  margin: 12px auto 0;
-  padding: 8px 22px;
-  background: transparent;
-  border: 1px solid var(--border-2);
-  border-radius: 8px;
-  color: var(--text-sec);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-}
-
-.weight-update-btn:hover {
-  background: var(--orange-dim);
-  border-color: var(--orange);
-  color: var(--text);
+.profile-section--skeleton {
+  height: 420px;
+  opacity: 0.4;
 }
 
 /* ── Goals CTA ── */
 .profile-goals-btn {
-  display: block;
   width: 100%;
   padding: 16px;
   background: var(--orange);
@@ -175,7 +81,6 @@
   border-radius: 14px;
   font-weight: 700;
   font-size: 1rem;
-  text-align: center;
   cursor: pointer;
   transition: background 0.2s;
   box-shadow: 0 0 30px var(--orange-glow);

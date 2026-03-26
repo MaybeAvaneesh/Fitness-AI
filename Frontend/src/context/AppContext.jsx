@@ -8,6 +8,9 @@ export const mockUser = {
   phone: '+1 (555) 234-5678',
   joinDate: new Date('2025-07-15'),
   weightKg: 87,
+  heightCm: 178,
+  age: 28,
+  gender: 'male',
   goals: {
     squat:    { current: 140, target: 180 },
     bench:    { current: 100, target: 130 },

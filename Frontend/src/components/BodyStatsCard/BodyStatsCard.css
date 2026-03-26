@@ -1,0 +1,221 @@
+/* ── Header ── */
+.bsc__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.bsc__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ── Unit toggle ── */
+.bsc__unit-toggle {
+  display: flex;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.bsc__unit-btn {
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-sec);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.bsc__unit-btn--active {
+  background: var(--orange);
+  color: #fff;
+}
+
+/* ── Two-col grid (height + age) ── */
+.bsc__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 0;
+}
+
+/* ── Generic field ── */
+.bsc__field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bsc__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-sec);
+}
+
+/* ── Stepper (height + age) ── */
+.bsc__stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.bsc__step {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--bg-card-2);
+  border: 1px solid var(--border-2);
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.bsc__step:hover {
+  border-color: var(--orange);
+  background: var(--orange-dim);
+}
+
+.bsc__val {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--text);
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.bsc__unit {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-sec);
+}
+
+/* ── Divider ── */
+.bsc__divider {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+}
+
+/* ── Weight stepper ── */
+.bsc__weight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 12px 0;
+}
+
+.bsc__weight-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-card-2);
+  border: 1px solid var(--border-2);
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.bsc__weight-btn:hover {
+  border-color: var(--orange);
+}
+
+.bsc__weight-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.bsc__weight-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3.5rem;
+  color: var(--orange);
+  line-height: 1;
+}
+
+.bsc__weight-unit {
+  font-size: 1rem;
+  color: var(--text-sec);
+  font-weight: 600;
+}
+
+/* ── Gender ── */
+.bsc__gender {
+  display: flex;
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 3px;
+}
+
+.bsc__gender-btn {
+  flex: 1;
+  padding: 9px 0;
+  border-radius: 9px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-sec);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.bsc__gender-btn--active {
+  background: var(--orange);
+  color: #fff;
+}
+
+/* ── Save button ── */
+.bsc__save {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px 22px;
+  background: transparent;
+  border: 1px solid var(--border-2);
+  border-radius: 8px;
+  color: var(--text-sec);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.bsc__save:hover {
+  background: var(--orange-dim);
+  border-color: var(--orange);
+  color: var(--text);
+}
