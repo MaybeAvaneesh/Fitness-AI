@@ -1,4 +1,4 @@
-const { saveUserToDatabaseSQL , fetchProfileSQL, deleteUserSQL,checkForExistingUserSQL,fetchUserByEmailSQL, generateAccessToken} = require('./user.auth.utils')
+const { saveUserToDatabaseSQL , fetchProfileSQL, deleteUserSQL,checkForExistingUserSQL,fetchUserByEmailSQL, generateAccessToken,generateRefreshToken} = require('./user.auth.utils')
 const bcrypt = require('bcrypt');
 
 

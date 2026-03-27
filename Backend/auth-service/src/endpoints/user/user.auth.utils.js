@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise');
-const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 
 const db = mysql.createPool({
@@ -50,8 +50,7 @@ const deleteUserSQL = async (userId) => {
         return result.affectedRows;
     } catch (error) {
         console.error('Error occurred while deleting user from database:', error);
-        const [result] = await db.rollback();
-        return result.affectedRows;
+        throw error;
     }finally {
         connection.release();
     }
@@ -104,7 +103,7 @@ const generateAccessToken = (payload) => {
 
 const generateRefreshToken = (payload) => {
     // Implementation for generating refresh token
-    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '7d' });
+    return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
 }
 
 module.exports = {

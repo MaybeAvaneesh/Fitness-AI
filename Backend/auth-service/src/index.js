@@ -8,6 +8,8 @@ const server = express();
 server.use(cors());
 server.use(helmet());
 server.use(morgan('dev'));
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || 5000;
 
