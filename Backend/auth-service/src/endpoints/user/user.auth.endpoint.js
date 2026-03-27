@@ -1,7 +1,10 @@
 const server = require('express').Router();
+const { verifyToken } = require('../auth.middleware');
 const { createUser, validateUser,getUserProfile,deleteUser } = require('./user.auth.service');
+const { validateCreateUserFields,validateDeleteUserFields,validateLoginFields,validateFetchUserProfileFields } = require('./user.auth.validation');
 
-server.post('/signup', async (req, res) => {
+
+server.post('/signup', validateCreateUserFields, async (req, res) => {
     console.log('Signup endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
@@ -9,8 +12,8 @@ server.post('/signup', async (req, res) => {
    try{
     // Simulate user registration logic here
     // For example, you can check if the user already exists, hash the password, and save the user to the database
-    await createUser(req.body)
-    res.status(201).json({ message: 'User registered successfully' });
+    const affectedRows = await createUser(req.body);
+    res.status(201).json({ message: 'User registered successfully', 'affectedRows': affectedRows });
    }
     catch (error) {
 
@@ -25,14 +28,14 @@ server.post('/signup', async (req, res) => {
 
 });
 
-server.post('/login', async (req, res) => {
+server.post('/login', validateLoginFields, async (req, res) => {
     console.log('Login endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
 
     try {
-        await validateUser(req.body);
-        res.status(200).json({ message: 'User authenticated successfully' });
+        const user = await validateUser(req.body);
+        res.status(200).json({ message: 'User authenticated successfully', 'accessToken': user.accessToken, 'refreshToken': user.refreshToken });
     }catch (error) {
         if (error.message === 'Invalid credentials') {
             res.status(401).json({ message: 'Invalid credentials' });
@@ -43,7 +46,7 @@ server.post('/login', async (req, res) => {
     }
 });
 
-server.post('/profile/:userId', async (req, res) => {
+server.post('/profile/:userId', verifyToken, validateFetchUserProfileFields, async (req, res) => {
     console.log('Profile endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
@@ -64,7 +67,7 @@ server.post('/profile/:userId', async (req, res) => {
     }
 });
 
-server.delete('/delete/:userId', async (req, res) => {
+server.delete('/delete/:userId', verifyToken, validateDeleteUserFields, async (req, res) => {
     console.log('Delete endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
@@ -72,8 +75,8 @@ server.delete('/delete/:userId', async (req, res) => {
     // Simulate user deletion logic here
     // For example, you can verify the JWT token, delete the user from the database, and return a success message in the response
     try {
-        await deleteUser(req.params.userId);
-        res.status(200).json({ message: 'User deleted successfully' });
+        const affectedRows = await deleteUser(req.params.userId);
+        res.status(200).json({ message: 'User deleted successfully', 'affectedRows': affectedRows });
     } catch (error) {
         console.error('Error occurred while deleting user:', error);
         res.status(500).json({ message: 'Internal server error' });
