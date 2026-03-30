@@ -1,0 +1,124 @@
+.dam__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: dam-fade 0.2s ease;
+}
+
+@keyframes dam-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.dam__card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-2);
+  border-radius: 18px;
+  padding: 36px 32px 28px;
+  text-align: center;
+  animation: dam-slide 0.25s ease;
+}
+
+@keyframes dam-slide {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.dam__icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.12);
+  color: #EF4444;
+  margin-bottom: 16px;
+}
+
+.dam__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.dam__text {
+  font-size: 0.85rem;
+  color: var(--text-sec);
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+
+.dam__label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-sec);
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.dam__input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border-2);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.dam__input:focus {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.dam__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dam__btn {
+  flex: 1;
+  padding: 11px 0;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.dam__btn--cancel {
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--text-sec);
+}
+
+.dam__btn--cancel:hover {
+  background: var(--bg-card-2);
+}
+
+.dam__btn--danger {
+  background: #EF4444;
+  border: 1px solid #EF4444;
+  color: #fff;
+}
+
+.dam__btn--danger:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.dam__btn--danger:not(:disabled):hover {
+  background: #DC2626;
+}

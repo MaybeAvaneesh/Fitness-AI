@@ -11,8 +11,28 @@
   height: 64px;
   display: flex;
   align-items: center;
+  gap: 12px;
   padding: 0 32px;
   border-bottom: 1px solid var(--border);
+}
+
+.auth-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--text-sec);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.auth-back:hover {
+  color: var(--text);
+  border-color: var(--orange);
 }
 
 .auth-logo {

@@ -1,8 +1,9 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Target } from 'lucide-react'
+import { Target, Trash2 } from 'lucide-react'
 import Header from '../../components/Header/Header'
 import ActivityHeatmap from '../../components/ActivityHeatmap/ActivityHeatmap'
+import DeleteAccountModal from '../../components/DeleteAccountModal/DeleteAccountModal'
 import { useApp } from '../../context/AppContext'
 import './Profile.css'
 
@@ -10,7 +11,8 @@ const BodyStatsCard = lazy(() => import('../../components/BodyStatsCard/BodyStat
 
 export default function Profile() {
   const navigate = useNavigate()
-  const { user } = useApp()
+  const { user, deleteAccount } = useApp()
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   const monthsSince = () => {
     const now = new Date()
@@ -53,6 +55,31 @@ export default function Profile() {
           <Target size={18} strokeWidth={2} />
           View My Goals
         </button>
+
+        <div className="profile-danger">
+          <span className="profile-danger__title">Danger Zone</span>
+          <p className="profile-danger__text">
+            Permanently delete your account and all associated data.
+          </p>
+          <button
+            className="profile-danger__btn"
+            onClick={() => {
+              if (window.confirm('Are you sure you want to delete your account?')) {
+                setShowDeleteModal(true)
+              }
+            }}
+          >
+            <Trash2 size={15} strokeWidth={2} />
+            Delete Account
+          </button>
+        </div>
+
+        {showDeleteModal && (
+          <DeleteAccountModal
+            onClose={() => setShowDeleteModal(false)}
+            onConfirm={() => { deleteAccount(); navigate('/welcome') }}
+          />
+        )}
 
       </div>
     </div>

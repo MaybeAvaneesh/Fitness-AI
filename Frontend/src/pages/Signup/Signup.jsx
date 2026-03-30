@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ArrowLeft } from 'lucide-react'
 import './Signup.css'
 
 const fields = [
@@ -17,6 +18,9 @@ export default function Signup() {
   return (
     <div className="auth-page">
       <div className="auth-topbar">
+        <button className="auth-back" onClick={() => navigate('/welcome')}>
+          <ArrowLeft size={18} strokeWidth={2} />
+        </button>
         <span className="auth-logo" onClick={() => navigate('/welcome')}>
           Power<span>ML</span>
         </span>

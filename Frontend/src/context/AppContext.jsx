@@ -29,6 +29,7 @@ export function AppProvider({ children }) {
   }, [theme])
 
   const toggleTheme = () => setTheme(t => t === 'orange' ? 'yellow' : 'orange')
+  const deleteAccount = () => setUser(mockUser)
 
   const toDisplay = (kg) => unit === 'kg' ? kg : Math.round(kg * 2.205)
   const toKg      = (val) => unit === 'kg' ? val : Math.round(val / 2.205)
@@ -39,6 +40,7 @@ export function AppProvider({ children }) {
       user, setUser,
       profileOpen, setProfileOpen,
       theme, toggleTheme,
+      deleteAccount,
       toDisplay, toKg,
     }}>
       {children}

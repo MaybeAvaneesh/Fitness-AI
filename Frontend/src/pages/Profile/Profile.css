@@ -92,3 +92,47 @@
 }
 
 .profile-goals-btn:hover { background: var(--orange-light); }
+
+/* ── Danger Zone ── */
+.profile-danger {
+  margin-top: 20px;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  border: 1px solid #EF4444;
+  border-radius: 16px;
+}
+
+.profile-danger__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: #EF4444;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.profile-danger__text {
+  font-size: 0.8rem;
+  color: var(--text-sec);
+  margin-bottom: 16px;
+}
+
+.profile-danger__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: transparent;
+  border: 1px solid #EF4444;
+  border-radius: 10px;
+  color: #EF4444;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.profile-danger__btn:hover {
+  background: #EF4444;
+  color: #fff;
+}
