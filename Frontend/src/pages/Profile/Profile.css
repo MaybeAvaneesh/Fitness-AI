@@ -98,7 +98,7 @@
   margin-top: 20px;
   padding: 20px 24px;
   background: var(--bg-card);
-  border: 1px solid #EF4444;
+  border: 1px solid var(--danger);
   border-radius: 16px;
 }
 
@@ -106,7 +106,7 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1rem;
-  color: #EF4444;
+  color: var(--danger);
   display: block;
   margin-bottom: 6px;
 }
@@ -123,9 +123,9 @@
   gap: 8px;
   padding: 9px 18px;
   background: transparent;
-  border: 1px solid #EF4444;
+  border: 1px solid var(--danger);
   border-radius: 10px;
-  color: #EF4444;
+  color: var(--danger);
   font-weight: 600;
   font-size: 0.8rem;
   cursor: pointer;
@@ -133,6 +133,6 @@
 }
 
 .profile-danger__btn:hover {
-  background: #EF4444;
+  background: var(--danger);
   color: #fff;
 }

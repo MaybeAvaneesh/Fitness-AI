@@ -38,8 +38,8 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: rgba(239, 68, 68, 0.12);
-  color: #EF4444;
+  background: var(--danger-dim);
+  color: var(--danger);
   margin-bottom: 16px;
 }
 
@@ -47,6 +47,7 @@
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.3rem;
+  color: var(--text);
   margin-bottom: 10px;
 }
 
@@ -78,8 +79,8 @@
 }
 
 .dam__input:focus {
-  border-color: #EF4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px var(--danger-glow);
 }
 
 .dam__actions {
@@ -109,8 +110,8 @@
 }
 
 .dam__btn--danger {
-  background: #EF4444;
-  border: 1px solid #EF4444;
+  background: var(--danger);
+  border: 1px solid var(--danger);
   color: #fff;
 }
 
@@ -120,5 +121,5 @@
 }
 
 .dam__btn--danger:not(:disabled):hover {
-  background: #DC2626;
+  filter: brightness(0.9);
 }

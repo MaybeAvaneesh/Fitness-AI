@@ -12,6 +12,7 @@ const BodyStatsCard = lazy(() => import('../../components/BodyStatsCard/BodyStat
 export default function Profile() {
   const navigate = useNavigate()
   const { user, deleteAccount } = useApp()
+  const [showConfirm, setShowConfirm] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   const monthsSince = () => {
@@ -63,16 +64,38 @@ export default function Profile() {
           </p>
           <button
             className="profile-danger__btn"
-            onClick={() => {
-              if (window.confirm('Are you sure you want to delete your account?')) {
-                setShowDeleteModal(true)
-              }
-            }}
+            onClick={() => setShowConfirm(true)}
           >
             <Trash2 size={15} strokeWidth={2} />
             Delete Account
           </button>
         </div>
+
+        {showConfirm && (
+          <div className="dam__overlay" onClick={() => setShowConfirm(false)}>
+            <div className="dam__card" onClick={e => e.stopPropagation()}>
+              <div className="dam__icon-wrap">
+                <Trash2 size={28} strokeWidth={2} />
+              </div>
+              <h2 className="dam__title">Are you sure?</h2>
+              <p className="dam__text">
+                This will permanently delete your account. You'll need to confirm
+                this action on the next step.
+              </p>
+              <div className="dam__actions">
+                <button className="dam__btn dam__btn--cancel" onClick={() => setShowConfirm(false)}>
+                  Cancel
+                </button>
+                <button className="dam__btn dam__btn--danger" onClick={() => {
+                  setShowConfirm(false)
+                  setShowDeleteModal(true)
+                }}>
+                  Continue
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {showDeleteModal && (
           <DeleteAccountModal

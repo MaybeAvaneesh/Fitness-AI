@@ -20,6 +20,9 @@
   --text: #FFFFFF;
   --text-sec: #9A9A9A;
   --text-muted: #555;
+  --danger: #EF4444;
+  --danger-dim: rgba(239, 68, 68, 0.12);
+  --danger-glow: rgba(239, 68, 68, 0.15);
   --border: #1E1E1E;
   --border-2: #2A2A2A;
   --font: 'Inter', sans-serif;
@@ -44,6 +47,9 @@
   --text:         #111111;
   --text-sec:     #555555;
   --text-muted:   #999999;
+  --danger:       #DC2626;
+  --danger-dim:   rgba(220, 38, 38, 0.10);
+  --danger-glow:  rgba(220, 38, 38, 0.15);
   --border:       #E0E0E0;
   --border-2:     #CCCCCC;
 }
