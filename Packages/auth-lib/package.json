@@ -1,5 +1,5 @@
 {
-    "name": "@fitness-ai/auth-lib",
+    "name": "@power-ml/auth-lib",
     "version": "1.0.0",
     "main": "index.js",
     "dependencies": {
