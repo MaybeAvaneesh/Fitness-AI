@@ -23,3 +23,9 @@ CREATE TABLE IF NOT EXISTS workout_splits(
     workout_split_description text
     workout_split_exercises json
 )
+
+CREATE TABLE IF NOT EXISTS user_workout_splits(
+    user_id int primary key,
+    workout_split_id int,
+    foreign key (workout_split_id) references workout_splits(workout_split_id)
+)
