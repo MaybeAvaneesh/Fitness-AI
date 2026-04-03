@@ -1,0 +1,118 @@
+.psm__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: psm-fade 0.2s ease;
+}
+
+@keyframes psm-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.psm__card {
+  width: 100%;
+  max-width: 720px;
+  max-height: 85vh;
+  background: var(--bg-card);
+  border: 1px solid var(--border-2);
+  border-radius: 18px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: psm-slide 0.25s ease;
+}
+
+@keyframes psm-slide {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* ── Header ── */
+.psm__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.psm__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.psm__close {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-sec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.psm__close:hover {
+  background: var(--bg-card-2);
+  color: var(--text);
+}
+
+.psm__hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+/* ── Scrollable body ── */
+.psm__body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  padding: 4px 0;
+}
+
+/* ── Footer ── */
+.psm__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.psm__count {
+  font-size: 0.8rem;
+  color: var(--text-sec);
+}
+
+.psm__done {
+  padding: 9px 28px;
+  border-radius: 10px;
+  border: none;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.psm__done:hover {
+  background: var(--orange-dark);
+}

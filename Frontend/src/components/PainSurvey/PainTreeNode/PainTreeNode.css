@@ -1,0 +1,73 @@
+.ptn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg-card-2);
+  color: var(--text-sec);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.ptn:hover {
+  border-color: var(--orange-border);
+  background: var(--orange-subtle);
+}
+
+/* ── Selected leaf — intensity drives opacity via --ptn-intensity (0.1–1.0) ── */
+.ptn--selected {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: color-mix(in srgb, var(--orange) calc(var(--ptn-intensity, 0.3) * 100%), transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--orange) calc(var(--ptn-intensity, 0.3) * 60%), transparent);
+}
+
+/* ── Intensity badge ── */
+.ptn__intensity {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+/* ── Root node ── */
+.ptn--root {
+  display: inline-flex;
+  padding: 8px 20px;
+  border-radius: 24px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: default;
+}
+
+.ptn--root:hover {
+  background: transparent;
+  border-color: transparent;
+}
+
+/* ── Chevron for expandable parents ── */
+.ptn__chevron {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.ptn--expanded .ptn__chevron {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,125 @@
+/* ── Header ── */
+.psc__header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.psc__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ── Card row ── */
+.psc__row {
+  display: flex;
+  gap: 14px;
+}
+
+@media (max-width: 520px) {
+  .psc__row { flex-direction: column; }
+}
+
+/* ── Individual card ── */
+.psc__card {
+  flex: 1;
+  position: relative;
+  min-height: 160px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-card-2);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.psc__card:hover {
+  border-color: var(--orange-border);
+  box-shadow: 0 0 20px var(--orange-glow);
+}
+
+/* ── Mini tree preview (background) ── */
+.psc__preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.psc__preview-root {
+  width: 60px;
+  height: 10px;
+  border-radius: 6px;
+  background: var(--text-muted);
+  opacity: 0.15;
+}
+
+.psc__preview-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.psc__preview-dot {
+  width: 32px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--text-muted);
+  opacity: 0.1;
+}
+
+/* ── Blur overlay ── */
+.psc__blur {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="yellow"] .psc__blur {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Foreground content ── */
+.psc__fg {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 16px;
+}
+
+.psc__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--orange-dim);
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.psc__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.psc__cta {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}

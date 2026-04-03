@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Target, Trash2 } from 'lucide-react'
 import Header from '../../components/Header/Header'
 import ActivityHeatmap from '../../components/ActivityHeatmap/ActivityHeatmap'
+import PainSurveyCards from '../../components/PainSurvey/PainSurveyCards/PainSurveyCards'
 import DeleteAccountModal from '../../components/DeleteAccountModal/DeleteAccountModal'
 import { useApp } from '../../context/AppContext'
 import './Profile.css'
@@ -44,6 +45,10 @@ export default function Profile() {
 
         <div className="profile-section">
           <ActivityHeatmap />
+        </div>
+
+        <div className="profile-section">
+          <PainSurveyCards />
         </div>
 
         <Suspense fallback={<div className="profile-section profile-section--skeleton" />}>
