@@ -70,10 +70,10 @@ const checkForExistingUserSQL = async (userId) => {
     }
 }
 
-const checkPasswordMatchSQL = async (email, password) => {
+const checkPasswordMatchSQL = async (email, hashedPassword) => {
     const connection = await db.getConnection();
     try {
-        const [rows] = await connection.query('SELECT id FROM users WHERE email = ? AND password = ? AND is_active = 1', [email, password]);
+        const [rows] = await connection.query('SELECT id FROM users WHERE email = ? AND password = ? AND is_active = 1', [email, hashedPassword]);
         return rows.length;
     } catch (error) {
         console.error('Error occurred while checking password match in database:', error);
