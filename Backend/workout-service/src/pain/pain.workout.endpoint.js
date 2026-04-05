@@ -30,3 +30,20 @@ server.post('/:userId', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
+server.put('/:userId', async (req, res) => {
+    console.log('Pain endpoint hit');
+    console.log('Request headers:', req.headers);
+    console.log('Request body:', req.body);
+
+    // Simulate updating pain data logic here
+    // For example, you can update the pain data in the database and return a success message in the response
+    try {
+
+    }catch (error) {
+        console.error('Error occurred while updating pain data:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+module.exports = server;

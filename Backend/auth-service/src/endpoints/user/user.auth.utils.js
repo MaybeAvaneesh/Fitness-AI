@@ -57,13 +57,13 @@ const deleteUserSQL = async (userId) => {
     }
 }
 
-const checkForExistingUserSQL = async (email ) => {
+const checkForExistingUserSQL = async (userId) => {
     const connection = await db.getConnection();
-    try {
-        const [rows] = await connection.query('SELECT id FROM users WHERE email = ? AND is_active = 1', [email]);
+    try{
+        const [rows] = await connection.query('SELECT id FROM users WHERE username = ? AND is_active = 1', [userId]);
         return rows.length > 0;
-    } catch (error) {
-        console.error('Error occurred while checking for existing user in database:', error);
+    }catch (error) {
+        console.error('Error occurred while checking for existing username in database:', error);
         throw error;
     }finally {
         connection.release();

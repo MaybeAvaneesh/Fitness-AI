@@ -26,6 +26,8 @@ server.use('/pain', require('./endpoints/pain/pain.workout.endpoint'));
 
 server.use('/health', require('./endpoints/health/health.workout.endpoint'));
 
+server.use('/goals', require('./endpoints/goals/goals.workout.endpoint'));
+
 server.listen(PORT, () => {
     console.log(`Workout service is running on port ${PORT}`);
 });
