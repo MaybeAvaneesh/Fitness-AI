@@ -60,7 +60,7 @@ const deleteUserSQL = async (userId) => {
 const checkForExistingUserSQL = async (userId) => {
     const connection = await db.getConnection();
     try{
-        const [rows] = await connection.query('SELECT id FROM users WHERE username = ? AND is_active = 1', [userId]);
+        const [rows] = await connection.query('SELECT id FROM users WHERE id = ? AND is_active = 1', [userId]);
         return rows.length > 0;
     }catch (error) {
         console.error('Error occurred while checking for existing username in database:', error);
@@ -97,14 +97,14 @@ const fetchUserByEmailSQL = async (email) => {
     }
 }
 
-const generateAccessToken = (payload) => {
+const generateAccessToken = ({id : userId , email: userEmail}) => {
     // Implementation for generating access token
-    return  jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '15m' });
+    return  jwt.sign({id: userId, email: userEmail}, process.env.JWT_SECRET, { expiresIn: '15m' });
 };
 
-const generateRefreshToken = (payload) => {
+const generateRefreshToken = ({id : userId , email: userEmail}) => {
     // Implementation for generating refresh token
-    return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
+    return jwt.sign({id: userId, email: userEmail}, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
 }
 
 module.exports = {

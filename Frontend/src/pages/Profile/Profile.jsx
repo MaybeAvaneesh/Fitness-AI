@@ -12,9 +12,10 @@ const BodyStatsCard = lazy(() => import('../../components/BodyStatsCard/BodyStat
 
 export default function Profile() {
   const navigate = useNavigate()
-  const { user, deleteAccount } = useApp()
+  const { user, deleteAccount, isAuthenticated } = useApp()
   const [showConfirm, setShowConfirm] = useState(false)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
   const monthsSince = () => {
     const now = new Date()
@@ -105,7 +106,15 @@ export default function Profile() {
         {showDeleteModal && (
           <DeleteAccountModal
             onClose={() => setShowDeleteModal(false)}
-            onConfirm={() => { deleteAccount(); navigate('/welcome') }}
+            onConfirm={async () => {
+              setDeleting(true)
+              try {
+                await deleteAccount()
+                navigate('/welcome')
+              } catch {
+                setDeleting(false)
+              }
+            }}
           />
         )}
 

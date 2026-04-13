@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { useApp } from '../../context/AppContext'
 import './Signup.css'
 
 const fields = [
@@ -12,8 +13,30 @@ const fields = [
 
 export default function Signup() {
   const navigate = useNavigate()
+  const { signup } = useApp()
   const [form, setForm] = useState({ name: '', email: '', phone: '', password: '' })
+  const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
   const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }))
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
+    setSubmitting(true)
+    try {
+      await signup({
+        username:    form.name,
+        email:       form.email,
+        password:    form.password,
+        phoneNumber: form.phone,
+      })
+      navigate('/goals')
+    } catch (err) {
+      setError(err.response?.data?.message || 'Signup failed. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <div className="auth-page">
@@ -31,12 +54,14 @@ export default function Signup() {
           <h1 className="auth-heading">Create your account</h1>
           <p className="auth-sub">Join 10,000+ athletes already training smarter.</p>
 
-          <form onSubmit={(e) => { e.preventDefault(); navigate('/goals') }}>
+          {error && <p className="auth-error">{error}</p>}
+
+          <form onSubmit={handleSubmit}>
             {fields.map(f => (
               <div key={f.key} className="auth-field">
                 <label className="auth-label">{f.label}</label>
                 <input className="auth-input" type={f.type} value={form[f.key]}
-                  onChange={set(f.key)} placeholder={f.placeholder} />
+                  onChange={set(f.key)} placeholder={f.placeholder} required />
               </div>
             ))}
 
@@ -45,7 +70,9 @@ export default function Signup() {
               <span>Terms of Service</span> and <span>Privacy Policy</span>.
             </p>
 
-            <button type="submit" className="auth-submit">Create Account →</button>
+            <button type="submit" className="auth-submit" disabled={submitting}>
+              {submitting ? 'Creating account...' : 'Create Account →'}
+            </button>
           </form>
 
           <p className="auth-footer">

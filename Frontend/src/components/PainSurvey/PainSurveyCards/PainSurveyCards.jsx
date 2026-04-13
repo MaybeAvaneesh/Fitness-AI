@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Activity, Bone } from 'lucide-react'
 import { MUSCLE_PAIN_TREE, JOINT_PAIN_TREE } from '../PainTree/painTreeData'
-import PainSurveyModal from '../PainSurveyModal'
+import PainSurveyModal from '../PainSurveyModal/PainSurveyModal'
 import './PainSurveyCards.css'
 
 const CARDS = [

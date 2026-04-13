@@ -54,6 +54,22 @@
 
 .auth-sub { color: var(--text-sec); font-size: 0.9rem; margin-bottom: 32px; }
 
+.auth-error {
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .auth-field { margin-bottom: 18px; }
 
 .auth-label {

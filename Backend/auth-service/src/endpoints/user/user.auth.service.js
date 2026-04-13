@@ -26,8 +26,8 @@ const validateUser = async(credentials) => {
     if (!match) {
         throw new Error('Invalid credentials');
     }
-    const accessToken = generateAccessToken(user);
-    const refreshToken = generateRefreshToken(user);
+    const accessToken = generateAccessToken({id: user.id, email: user.email});
+    const refreshToken = generateRefreshToken({id: user.id, email: user.email});
     return { accessToken , refreshToken};
 
 }

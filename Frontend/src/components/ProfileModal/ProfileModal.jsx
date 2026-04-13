@@ -11,7 +11,7 @@ const items = [
 
 export default function ProfileModal({ onClose }) {
   const navigate = useNavigate()
-  const { user } = useApp()
+  const { user, logout } = useApp()
   const initials = user.name.split(' ').map(n => n[0]).join('')
   const go = (path) => { onClose(); navigate(path) }
 
@@ -36,7 +36,7 @@ export default function ProfileModal({ onClose }) {
 
       <div className="pm__divider" />
 
-      <button className="pm__item pm__item--danger" onClick={() => go('/welcome')}>
+      <button className="pm__item pm__item--danger" onClick={() => { logout(); go('/welcome') }}>
         <span className="pm__item-icon"><LogOut size={15} strokeWidth={2} /></span>
         Sign Out
       </button>

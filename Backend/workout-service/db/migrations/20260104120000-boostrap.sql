@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS workouts(
     workout_out json,
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp
-)
+);
 
 CREATE TABLE IF NOT EXISTS health(
     user_id int primary key,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS health(
     gender enum('male','female','other'),
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp
-)
+);
 
 CREATE TABLE IF NOT EXISTS pain(
     user_id int primary key,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS pain(
     joint_pain_points json,
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp
-)
+);
 
 CREATE TABLE IF NOT EXISTS workout_splits(
     workout_split_id int auto_increment primary key,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS workout_splits(
     workout_split_exercises json,
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp
-)
+);
 
 CREATE TABLE IF NOT EXISTS user_workout_splits(
     user_id int primary key,
@@ -38,13 +38,23 @@ CREATE TABLE IF NOT EXISTS user_workout_splits(
     foreign key (workout_split_id) references workout_splits(workout_split_id),
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp
-)
+);
 
-CREATE TABLE IF NOT EXISTS goals{
+CREATE TABLE IF NOT EXISTS goals(
     user_id int primary key,
     current_goals json,
     future_goals json,
     time_frame varchar(255),
     created_at timestamp default current_timestamp,
     updated_at timestamp default current_timestamp on update current_timestamp
-}
+);
+
+CREATE TABLE IF NOT EXISTS workout_history(
+    history_id int auto_increment primary key,
+    user_id int,
+    workout_data json,
+    intensity_level enum('low','medium','high'),
+    workout_date date,
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp on update current_timestamp
+);
