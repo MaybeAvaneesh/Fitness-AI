@@ -1,4 +1,4 @@
-export const validateUser = (userId) => {
+const validateUser = (userId) => {
     // Simulate user validation logic here
     // For example, you can check if the user exists in the database and if the provided userId is valid
     //check for sql injection
@@ -9,6 +9,10 @@ export const validateUser = (userId) => {
 }
 
 const injectionCheck = (input) => {
-    const sqlInjectionPattern = /(\b(SELECT|INSERT|DELETE|UPDATE|DROP|ALTER|CREATE|TRUNCATE|EXEC|UNION|OR|AND)\b|\-\-|\;|\')/i;
+    const sqlInjectionPattern = /(\b(SELECT|INSERT|DELETE|UPDATE|DROP|ALTER|CREATE|TRUNCATE|EXEC|UNION)\b|\-\-|\;|\')/i;
     return !sqlInjectionPattern.test(input);
+}
+
+module.exports = {
+    validateUser
 }

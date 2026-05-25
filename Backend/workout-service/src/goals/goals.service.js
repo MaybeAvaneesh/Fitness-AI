@@ -1,7 +1,7 @@
 const { getGoalsFromDatabaseSQL , updateGoalsInDatabaseSQL } = require('./goals.utils');
 const { validateUser } = require('../endpoints.validation')
 
-export const getGoals = async (userId) => {
+const getGoals = async (userId) => {
 
     try{
         validateUser(userId);
@@ -13,7 +13,7 @@ export const getGoals = async (userId) => {
     
 }
 
-export const updateGoals = async (userId, currentGoals, futureGoals, timeFrame) => {
+const updateGoals = async (userId, currentGoals, futureGoals, timeFrame) => {
 
     try {
         validateUser(userId);
@@ -22,4 +22,9 @@ export const updateGoals = async (userId, currentGoals, futureGoals, timeFrame) 
         console.error('Error occurred while updating/creating goals:', error);
         throw error;
     }
+}
+
+module.exports = {
+    getGoals,
+    updateGoals
 }

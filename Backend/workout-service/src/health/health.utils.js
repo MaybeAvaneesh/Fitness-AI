@@ -1,25 +1,20 @@
-const mysql = require('mysql2/promise');
+const {db} = require('../endpoint.utils');
 
-const db = mysql.createPool({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 3306,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
-
-const getHealthDataFromDatabaseSQL = `Select age,weight,height, gender from health where user_id = ?`;
+const getHealthDataFromDatabaseSQL = `Select age,weight_kg,height_cm, gender from health where user_id = ?`;
 
 const updateHealthDataInDatabaseSQL = `
-    INSERT INTO health (user_id, age, weight, height, gender)
+    INSERT INTO health (user_id, age, weight_kg, height_cm, gender)
     VALUES (?, ?, ?, ?, ?)
     ON DUPLICATE KEY UPDATE
         age = VALUES(age),
-        weight = VALUES(weight),
-        height = VALUES(height),   `
+        weight_kg = VALUES(weight_kg),
+        height_cm = VALUES(height_cm), 
+        gender = VALUES(gender),
+        updated_at = CURRENT_TIMESTAMP;
+`;
 
 
-export const getHealthDataFromDatabase = async (userId) => {
+const getHealthDataFromDatabase = async (userId) => {
     const connection = await db.getConnection();
     try {
         const [rows] = await connection.query(getHealthDataFromDatabaseSQL, [userId]);
@@ -32,7 +27,7 @@ export const getHealthDataFromDatabase = async (userId) => {
     }
 }
 
-export const updateHealthDataInDatabase = async (userId, age, weight, height, gender) => {
+const updateHealthDataInDatabase = async (userId, age, weight, height, gender) => {
     const connection = await db.getConnection();
     try {
         const [result] = await connection.query(updateHealthDataInDatabaseSQL, [userId, age, weight, height, gender]);
@@ -44,4 +39,9 @@ export const updateHealthDataInDatabase = async (userId, age, weight, height, ge
     } finally {
         connection.release();
     }
+}
+
+module.exports = {
+    getHealthDataFromDatabase,
+    updateHealthDataInDatabase
 }

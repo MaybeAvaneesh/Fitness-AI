@@ -1,6 +1,8 @@
-const server = require('server').router();
+const server = require('express').Router();
+const { requireSelf } = require('@power-ml/auth-lib/middleware');
+const {getGoals, updateGoals} = require('./goals.service');
 
-server.get('/:userId', async (req, res) => {
+server.get('/:userId', requireSelf, async (req, res) => {
     console.log('Goals endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
@@ -9,7 +11,7 @@ server.get('/:userId', async (req, res) => {
     // For example, you can fetch the goals data from the database and return it in the response
     try {
         const userId  = req.params.userId;
-        const goalsData = await getGoalsFromDatabaseSQL(userId);
+        const goalsData = await getGoals(userId);
         res.status(200).json({ goals: goalsData });
 
     }catch (error) {
@@ -18,7 +20,7 @@ server.get('/:userId', async (req, res) => {
     }
 });
 
-server.put('/:userId', async (req, res) => {
+server.put('/:userId', requireSelf, async (req, res) => {
     console.log('Goals endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
@@ -27,8 +29,8 @@ server.put('/:userId', async (req, res) => {
     // For example, you can update the goals data in the database and return a success message in the response
     try {
         const userId = req.params.userId;
-        const goalsData = req.body;
-        await updateGoalsInDatabaseSQL(userId, goalsData);
+        const { currentGoalsData, futureGoalsData, timeframe } = req.body;
+        await updateGoals(userId, currentGoalsData, futureGoalsData, timeframe);
         res.status(200).json({ message: 'Goals data updated successfully' });
 
     }catch (error) {

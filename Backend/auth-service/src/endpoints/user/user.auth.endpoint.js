@@ -1,5 +1,5 @@
 const server = require('express').Router();
-const { verifyToken } = require('../auth.middleware');
+const { requireAuth, requireSelf } = require('@power-ml/auth-lib/middleware');
 const { createUser, validateUser,getUserProfile,deleteUser } = require('./user.auth.service');
 const { validateCreateUserFields,validateDeleteUserFields,validateLoginFields,validateFetchUserProfileFields } = require('./user.auth.validation');
 
@@ -46,7 +46,7 @@ server.post('/login', validateLoginFields, async (req, res) => {
     }
 });
 
-server.post('/profile/:userId', verifyToken, validateFetchUserProfileFields, async (req, res) => {
+server.post('/profile/:userId', requireAuth, requireSelf, validateFetchUserProfileFields, async (req, res) => {
     console.log('Profile endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
@@ -67,7 +67,7 @@ server.post('/profile/:userId', verifyToken, validateFetchUserProfileFields, asy
     }
 });
 
-server.delete('/delete/:userId', verifyToken, validateDeleteUserFields, async (req, res) => {
+server.delete('/delete/:userId', requireAuth, requireSelf, validateDeleteUserFields, async (req, res) => {
     console.log('Delete endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);

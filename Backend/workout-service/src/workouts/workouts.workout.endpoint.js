@@ -1,38 +1,35 @@
-const server = require('server').router();
+const server = require('express').Router();
+const { requireSelf } = require('@power-ml/auth-lib/middleware');
 
-const { getWorkoutData, updateWorkoutData } = require('./health.workout.service');
+const { getWorkoutData, logWorkout } = require('./workouts.service');
 
-server.get('/:userId', async (req, res) => {
-    console.log('Health endpoint hit');
+server.get('/:userId', requireSelf, async (req, res) => {
+    console.log('Workout endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
 
-    // Simulate fetching health data logic here
-    // For example, you can fetch the health data from the database and return it in the response
     try {
         const userId = req.params.userId;
-        const workoutData = await getWorkoutData(userId);
-        res.json(workoutData);
-    }catch (error) {
-        console.error('Error occurred while fetching health data:', error);
+        const history = await getWorkoutData(userId);
+        res.status(200).json({ history });
+    } catch (error) {
+        console.error('Error occurred while fetching workout history:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
 
-server.put('/:userId', async (req, res) => {
-    console.log('Health endpoint hit');
+server.post('/:userId', requireSelf, async (req, res) => {
+    console.log('Workout endpoint hit');
     console.log('Request headers:', req.headers);
     console.log('Request body:', req.body);
 
-    // Simulate updating health data logic here
-    // For example, you can update the health data in the database and return a success message in the response
     try {
         const userId = req.params.userId;
-        const workoutData = req.body;
-        await updateWorkoutData(userId, workoutData);
-        res.status(200).json({ message: 'Health data updated successfully' });
-    }catch (error) {
-        console.error('Error occurred while updating health data:', error);
+        const { intensityLevel, workoutLog } = req.body;
+        const historyId = await logWorkout(userId, intensityLevel, workoutLog);
+        res.status(201).json({ message: 'Workout logged successfully', historyId });
+    } catch (error) {
+        console.error('Error occurred while logging workout:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });

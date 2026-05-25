@@ -1,17 +1,20 @@
-const GET_DATA_SQL_FROM_DATE_RANGE = `SELECT date, pain_data FROM pain WHERE user_id = ? AND date BETWEEN ? AND ?;`;
+const {db} = require('../endpoint.utils');
+
+const GET_PAIN_DATA_SQL = `SELECT muscle_pain_points, joint_pain_points FROM pain WHERE user_id = ?`;
 
 const UPDATE_PAIN_DATA_SQL = `
-    INSERT INTO pain (user_id, date, pain_data)
+    INSERT INTO pain (user_id, muscle_pain_points, joint_pain_points)
     VALUES (?, ?, ?)
     ON DUPLICATE KEY UPDATE
-        pain_data = VALUES(pain_data),
-        updated_at = CURRENT_TIMESTAMP;
+        muscle_pain_points = VALUES(muscle_pain_points),
+        joint_pain_points = VALUES(joint_pain_points),
+        updated_at = NOW();
 `;
 
-const getPainDataFromDatabaseSQL = async (userId, startDate, endDate) => {
+const getPainDataFromDatabaseSQL = async (userId) => {
     const connection = await db.getConnection();
     try {
-        const [rows] = await connection.query(GET_DATA_SQL_FROM_DATE_RANGE, [userId, startDate, endDate]);
+        const [rows] = await connection.query(GET_PAIN_DATA_SQL, [userId]);
         return rows;
     } catch (error) {
         console.error('Error occurred while fetching pain data from database:', error);
@@ -21,10 +24,10 @@ const getPainDataFromDatabaseSQL = async (userId, startDate, endDate) => {
     }
 }
 
-const updatePainDataInDatabaseSQL = async (userId, date, painData) => {
+const updatePainDataInDatabaseSQL = async (userId, musclePainPoints, jointPainPoints) => {
     const connection = await db.getConnection();
     try {
-        const [result] = await connection.query(UPDATE_PAIN_DATA_SQL, [userId, date, JSON.stringify(painData)]);
+        const [result] = await connection.query(UPDATE_PAIN_DATA_SQL, [userId, JSON.stringify(musclePainPoints), JSON.stringify(jointPainPoints)]);
         return result.affectedRows;
     } catch (error) {
         console.error('Error occurred while updating pain data in database:', error);

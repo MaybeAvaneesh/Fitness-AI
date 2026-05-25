@@ -1,11 +1,12 @@
-const {getPainData, updatePainData} = require('./pain.workout.service');
+const {getPainDataFromDatabaseSQL , updatePainDataInDatabaseSQL} = require('./pain.utils');
+
 const {validateUser} = require('../endpoints.validation');
 
-export const getPain = async (userId) => {
+const getPain = async (userId) => {
 
     try{
         validateUser(userId);
-        return await getPainData(userId);
+        return await getPainDataFromDatabaseSQL(userId);
     } catch (error) {
         console.error('Error occurred while fetching pain data:', error);
         throw error;
@@ -13,14 +14,19 @@ export const getPain = async (userId) => {
     
 }
 
-export const updatePain = async (userId, painData) => {
+const updatePain = async (userId, musclePainPoints, jointPainPoints) => {
 
     try {
         validateUser(userId);
-        return await updatePainData(userId, painData);
+        return await updatePainDataInDatabaseSQL(userId, musclePainPoints, jointPainPoints);
     } catch (error) {
         console.error('Error occurred while updating/creating pain data:', error);
         throw error;
     }
-}  
+}
+
+module.exports = {
+    getPain,
+    updatePain
+}
 

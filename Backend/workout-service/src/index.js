@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const { requireAuth } = require('@power-ml/auth-lib/middleware');
 require('dotenv').config();
 
 const server = express();
@@ -13,20 +14,16 @@ server.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || 5001;
 
-server.get('/health', (req, res) => {
-    console.log('Health check endpoint hit');
-    console.log('Request headers:', req.headers);
-    console.log('Request body:', req.body);
+// Public — no auth required
+server.get('/healthcheck', (req, res) => {
     res.status(200).json({ message: 'Workout service is healthy' });
 });
 
-server.use('/workouts', require('./endpoints/workouts/workout.endpoint'));
-
-server.use('/pain', require('./endpoints/pain/pain.workout.endpoint'));
-
-server.use('/health', require('./endpoints/health/health.workout.endpoint'));
-
-server.use('/goals', require('./endpoints/goals/goals.workout.endpoint'));
+// Everything below this line requires a valid JWT
+server.use('/workouts', requireAuth, require('./workouts/workouts.workout.endpoint'));
+server.use('/pain',     requireAuth, require('./pain/pain.workout.endpoint'));
+server.use('/health',   requireAuth, require('./health/health.workout.endpoint'));
+server.use('/goals',    requireAuth, require('./goals/goals.workout.endpoint'));
 
 server.listen(PORT, () => {
     console.log(`Workout service is running on port ${PORT}`);

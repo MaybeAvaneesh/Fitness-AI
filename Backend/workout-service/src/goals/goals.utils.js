@@ -1,18 +1,10 @@
-const mysql = require('mysql2/promise');
+const { db }= require('../endpoint.utils');
 
-const db = mysql.createPool({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 3306,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
-});
-
-export const GET_GOALS_SQL = `
+const GET_GOALS_SQL = `
     SELECT current_goals, future_goals, time_frame FROM goals WHERE user_id = ?;
 `;
 
-export const UPDATE_GOALS_SQL = `
+const UPDATE_GOALS_SQL = `
     INSERT INTO goals (user_id, current_goals, future_goals, time_frame)
     VALUES (?, ?, ?, ?)
     ON DUPLICATE KEY UPDATE
@@ -22,7 +14,7 @@ export const UPDATE_GOALS_SQL = `
         updated_at = CURRENT_TIMESTAMP;
 `;
 
-export const getGoalsFromDatabaseSQL = async (userId) => {
+const getGoalsFromDatabaseSQL = async (userId) => {
     const connection = await db.getConnection();
     try {
         const [rows] = await connection.query(GET_GOALS_SQL, [userId]);
@@ -35,7 +27,7 @@ export const getGoalsFromDatabaseSQL = async (userId) => {
     }
 }
 
-export const updateGoalsInDatabaseSQL = async (userId, currentGoals, futureGoals, timeFrame) => {
+const updateGoalsInDatabaseSQL = async (userId, currentGoals, futureGoals, timeFrame) => {
     const connection = await db.getConnection();
     try {
         const [result] = await connection.query(UPDATE_GOALS_SQL, [userId, JSON.stringify(currentGoals), JSON.stringify(futureGoals), timeFrame]);
@@ -46,4 +38,9 @@ export const updateGoalsInDatabaseSQL = async (userId, currentGoals, futureGoals
     } finally {
         connection.release();
     }
+}
+
+module.exports = {
+    getGoalsFromDatabaseSQL,
+    updateGoalsInDatabaseSQL
 }

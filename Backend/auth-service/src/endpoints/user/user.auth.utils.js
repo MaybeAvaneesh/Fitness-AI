@@ -57,10 +57,10 @@ const deleteUserSQL = async (userId) => {
     }
 }
 
-const checkForExistingUserSQL = async (userId) => {
+const checkForExistingUserSQL = async (email) => {
     const connection = await db.getConnection();
     try{
-        const [rows] = await connection.query('SELECT id FROM users WHERE id = ? AND is_active = 1', [userId]);
+        const [rows] = await connection.query('SELECT id FROM users WHERE email = ? AND is_active = 1', [email]);
         return rows.length > 0;
     }catch (error) {
         console.error('Error occurred while checking for existing username in database:', error);
@@ -68,20 +68,6 @@ const checkForExistingUserSQL = async (userId) => {
     }finally {
         connection.release();
     }
-}
-
-const checkPasswordMatchSQL = async (email, hashedPassword) => {
-    const connection = await db.getConnection();
-    try {
-        const [rows] = await connection.query('SELECT id FROM users WHERE email = ? AND password = ? AND is_active = 1', [email, hashedPassword]);
-        return rows.length;
-    } catch (error) {
-        console.error('Error occurred while checking password match in database:', error);
-        throw error;
-    }finally {
-        connection.release();
-    }
-
 }
 
 const fetchUserByEmailSQL = async (email) => {
@@ -112,7 +98,6 @@ module.exports = {
     fetchProfileSQL,
     deleteUserSQL,
     checkForExistingUserSQL,
-    checkPasswordMatchSQL,
     fetchUserByEmailSQL,
     generateAccessToken,
     generateRefreshToken
